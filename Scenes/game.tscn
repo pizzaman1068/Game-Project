@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cufci385o641h"]
+
+[ext_resource type="PackedScene" uid="uid://dftrpkfy22rxb" path="res://Scenes/player.tscn" id="1_ebmjs"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q846t"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y8qi5"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_q846t")
+
+[node name="Game" type="Node2D" unique_id=1697012719]
+
+[node name="Player" parent="." unique_id=1884397310 instance=ExtResource("1_ebmjs")]
+
+[node name="Camera" type="Camera2D" parent="Player" unique_id=198603180]
+position_smoothing_enabled = true
+
+[node name="TempBackground" type="Sprite2D" parent="." unique_id=2011500776]
+scale = Vector2(2, 2)
+texture = SubResource("NoiseTexture2D_y8qi5")

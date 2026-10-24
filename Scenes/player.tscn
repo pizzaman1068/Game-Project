@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://dftrpkfy22rxb"]
+
+[ext_resource type="Texture2D" uid="uid://c60lg7nl3p0j3" path="res://Art Assets/Main_character_temp_sprite.png" id="1_v0iea"]
+
+[sub_resource type="GDScript" id="GDScript_ebmjs"]
+resource_name = "Move"
+script/source = "extends CharacterBody2D
+
+#The speed of the character in pixels per second
+const DEFAULT_SPEED = 200
+
+
+func _physics_process(delta: float) -> void:
+	
+	#The movement speed
+	var speed
+	
+	#Checks if sprinting
+	if Input.is_action_pressed(\"Sprint\"):
+		speed = DEFAULT_SPEED * 1.75
+	else:
+		speed = DEFAULT_SPEED
+	
+	
+	#Checks y movement
+	var y_direction := Input.get_axis(\"Up\", \"Down\")
+	if y_direction:
+		velocity.y = y_direction * speed
+	else:
+		velocity.y = 0
+	
+	
+	#Checks x movement
+	var x_direction := Input.get_axis(\"Left\", \"Right\")
+	if x_direction:
+		velocity.x = x_direction * speed
+	else:
+		velocity.x = 0
+	
+	#Moves the character based off of velocity
+	move_and_slide()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8qi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvnsp")
+}],
+"loop": 1,
+"name": &"Still",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8qi5"]
+size = Vector2(26, 115)
+
+[node name="Player" type="CharacterBody2D" unique_id=1884397310]
+z_index = 5
+script = SubResource("GDScript_ebmjs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1366553619]
+sprite_frames = SubResource("SpriteFrames_y8qi5")
+animation = &"Still"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1372285028]
+position = Vector2(1, 6.5)
+shape = SubResource("RectangleShape2D_y8qi5")
