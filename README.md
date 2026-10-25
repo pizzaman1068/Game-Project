@@ -16,5 +16,5 @@ To update github:
 2. open git bash in the game file
 3. "git status"
 4. "git add ."
-5. "git commit -m "<Your message here>""
+5. "git commit -m "[Your message here]""
 6. "git push"
