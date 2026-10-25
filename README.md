@@ -1,5 +1,9 @@
 This is a small indie development project made in godot
 
+What you need:
+
+1. git  https://git-scm.com/
+2. godot  https://godotengine.org/download/windows/
 
 To access in godot:
 
