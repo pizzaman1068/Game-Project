@@ -14,7 +14,7 @@ To access in godot:
 5. open in godot
 
 
-To update github:
+To save changes in github:
 
 1. save changes in godot
 2. open git bash in the game file
@@ -22,3 +22,6 @@ To update github:
 4. "git add ."
 5. "git commit -m "[Your message here]""
 6. "git push"
+
+To check if it works:
+Type your github username under the test file in art assets
