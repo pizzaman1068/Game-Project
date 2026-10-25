@@ -15,7 +15,7 @@ script/source = "extends CharacterBody2D
 const DEFAULT_SPEED = 200
 
 #The last moved direction
-var last_direction = 1
+var last_direction
 
 #Player sprite
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -170,9 +170,9 @@ script = SubResource("GDScript_ebmjs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1366553619]
 sprite_frames = SubResource("SpriteFrames_y8qi5")
-animation = &"Back_Idle"
+animation = &"Front_Idle"
 autoplay = "Front_Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1372285028]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1372285028]
 position = Vector2(1, 6.5)
 shape = SubResource("RectangleShape2D_y8qi5")

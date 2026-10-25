@@ -8,7 +8,8 @@
 [node name="Player" parent="." unique_id=1884397310 instance=ExtResource("1_ebmjs")]
 
 [node name="Camera" type="Camera2D" parent="Player" unique_id=198603180]
+zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
 
 [node name="Map" parent="." unique_id=605450499 instance=ExtResource("2_qxrlw")]
-position = Vector2(243, 259)
+position = Vector2(220, 260)
