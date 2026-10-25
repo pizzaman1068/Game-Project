@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://dftrpkfy22rxb"]
+
+[ext_resource type="Texture2D" uid="uid://do8gyqm5j1cgq" path="res://Art Assets/Player_Character/Player_Character_Down.png" id="1_gy20a"]
+[ext_resource type="Texture2D" uid="uid://bu4630e6g0db4" path="res://Art Assets/Player_Character/Player_Character_Back_Idle.png" id="1_khnq4"]
+[ext_resource type="Texture2D" uid="uid://ba02lys5sdvpe" path="res://Art Assets/Player_Character/Player_Character_Side.png" id="2_cqrjx"]
+[ext_resource type="Texture2D" uid="uid://dj4rqt6kb2duh" path="res://Art Assets/Player_Character/Player_Character_Front_Idle.png" id="2_utp2y"]
+[ext_resource type="Texture2D" uid="uid://dabqvd7akbbc1" path="res://Art Assets/Player_Character/Player_Character_Side_Idle.png" id="3_gdgf0"]
+[ext_resource type="Texture2D" uid="uid://cc67kvyyacwl5" path="res://Art Assets/Player_Character/Player_Character_Up.png" id="4_utp2y"]
+
+[sub_resource type="GDScript" id="GDScript_ebmjs"]
+resource_name = "Move"
+script/source = "extends CharacterBody2D
+
+#The speed of the character in pixels per second
+const DEFAULT_SPEED = 200
+
+#The last moved direction
+var last_direction = 1
+
+#Player sprite
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+func _physics_process(delta: float) -> void:
+	
+	#The movement speed
+	var speed
+	
+	#Checks if sprinting
+	if Input.is_action_pressed(\"Sprint\"):
+		speed = DEFAULT_SPEED * 1.75
+	else:
+		speed = DEFAULT_SPEED
+	
+	#If the player is moving on the x or y
+	var moving_x = false
+	var moving_y = false
+	
+	#Checks y movement and updates player position accordingly
+	var y_direction := Input.get_axis(\"Up\", \"Down\")
+	if y_direction:
+		velocity.y = y_direction * speed
+		moving_y = true
+		
+		if y_direction == 1:
+			animated_sprite_2d.play(\"Walk_Down\")
+			last_direction = 1
+			
+		elif y_direction == -1:
+			animated_sprite_2d.play(\"Walk_Up\")
+			last_direction = 2
+			
+	else:
+		velocity.y = 0
+		moving_y = false
+		
+	
+	
+	#Checks x movement and updates player position accordingly
+	var x_direction := Input.get_axis(\"Left\", \"Right\")
+	if x_direction:
+		velocity.x = x_direction * speed
+		moving_x = true
+		
+		if x_direction == 1:
+			animated_sprite_2d.flip_h = true
+			animated_sprite_2d.play(\"Walk_Side\")
+			last_direction = 3
+			
+		elif x_direction == -1:
+			animated_sprite_2d.flip_h = false
+			animated_sprite_2d.play(\"Walk_Side\")
+			last_direction = 3
+			
+	else:
+		velocity.x = 0
+		moving_x = false
+	
+	#Plays idle animation according to last direction if player isn't moving
+	if not moving_x and not moving_y:
+		if last_direction == 1:
+			animated_sprite_2d.play(\"Front_Idle\")
+		
+		elif last_direction == 2:
+			animated_sprite_2d.play(\"Back_Idle\")
+			
+		elif last_direction == 3:
+			animated_sprite_2d.play(\"Side_Idle\")
+	
+	#Moves the character based off of velocity
+	move_and_slide()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo8ps"]
+atlas = ExtResource("1_khnq4")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcmex"]
+atlas = ExtResource("2_utp2y")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25bbb"]
+atlas = ExtResource("3_gdgf0")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("2_cqrjx")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("4_utp2y")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8qi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo8ps")
+}],
+"loop": 1,
+"name": &"Back_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcmex")
+}],
+"loop": 1,
+"name": &"Front_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25bbb")
+}],
+"loop": 1,
+"name": &"Side_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gy20a")
+}],
+"loop": 1,
+"name": &"Walk_Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}],
+"loop": 1,
+"name": &"Walk_Side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}],
+"loop": 1,
+"name": &"Walk_Up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8qi5"]
+size = Vector2(26, 115)
+
+[node name="Player" type="CharacterBody2D" unique_id=1884397310]
+z_index = 5
+script = SubResource("GDScript_ebmjs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1366553619]
+sprite_frames = SubResource("SpriteFrames_y8qi5")
+animation = &"Back_Idle"
+autoplay = "Front_Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1372285028]
+position = Vector2(1, 6.5)
+shape = SubResource("RectangleShape2D_y8qi5")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cufci385o641h"]
 
-[ext_resource type="PackedScene" uid="uid://dftrpkfy22rxb" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="PackedScene" uid="uid://bav5otjbchbsh" path="res://Scenes/map.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dftrpkfy22rxb" path="res://Scenes/Characters/player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://bav5otjbchbsh" path="res://Scenes/Maps/map.tscn" id="2_qxrlw"]
 
 [node name="Game" type="Node2D" unique_id=1697012719]
 
@@ -11,4 +11,4 @@
 position_smoothing_enabled = true
 
 [node name="Map" parent="." unique_id=605450499 instance=ExtResource("2_qxrlw")]
-position = Vector2(250, 256)
+position = Vector2(243, 259)
