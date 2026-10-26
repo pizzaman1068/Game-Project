@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8b1jlbmhkeel"
+path="res://.godot/imported/concept.mp3-f493c5f7f75829538f1e0e3adeefa92f.mp3str"
+
+[deps]
+
+source_file="res://Music Assets/concept.mp3"
+dest_files=["res://.godot/imported/concept.mp3-f493c5f7f75829538f1e0e3adeefa92f.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

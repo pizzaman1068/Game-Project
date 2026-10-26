@@ -14,8 +14,13 @@ config/name="Game"
 run/main_scene="uid://cufci385o641h"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout=""
+
 [display]
 
+window/size/initial_position_type=5
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
