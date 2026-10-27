@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dftrpkfy22rxb" path="res://Scenes/Characters/player.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://bav5otjbchbsh" path="res://Scenes/Maps/map.tscn" id="2_qxrlw"]
 [ext_resource type="AudioStream" uid="uid://b8b1jlbmhkeel" path="res://Music Assets/concept.mp3" id="3_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://bnat7omj6ixpc" path="res://Scenes/fight_scene.tscn" id="4_3dryh"]
 
 [node name="Game" type="Node2D" unique_id=1697012719]
 
@@ -11,6 +12,8 @@
 [node name="Camera" type="Camera2D" parent="Player" unique_id=198603180]
 zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
+
+[node name="fight_scene" parent="Player/Camera" unique_id=424616997 instance=ExtResource("4_3dryh")]
 
 [node name="Map" parent="." unique_id=605450499 instance=ExtResource("2_qxrlw")]
 position = Vector2(220, 260)
