@@ -12,7 +12,8 @@ resource_name = "Move"
 script/source = "extends CharacterBody2D
 
 #The speed of the character in pixels per second
-const DEFAULT_SPEED = 200
+@export var DEFAULT_SPEED: int = 200
+@export var SPRINT_MULT: float = 1.75
 
 #The last moved direction
 var last_direction
@@ -27,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	
 	#Checks if sprinting
 	if Input.is_action_pressed(\"Sprint\"):
-		speed = DEFAULT_SPEED * 1.75
+		speed = DEFAULT_SPEED * SPRINT_MULT
 	else:
 		speed = DEFAULT_SPEED
 	
