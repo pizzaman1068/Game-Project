@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="uid://cufci385o641h"
+run/main_scene="uid://c1si4crve5b4f"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [audio]
@@ -20,6 +20,8 @@ buses/default_bus_layout=""
 
 [display]
 
+window/size/viewport_width=1200
+window/size/viewport_height=675
 window/size/initial_position_type=5
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

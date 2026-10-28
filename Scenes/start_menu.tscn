@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://c1si4crve5b4f"]
+
+[sub_resource type="GDScript" id="GDScript_0u6gb"]
+script/source = "extends HBoxContainer
+
+
+func _on_start_game_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/game.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_j46f7"]
+script/source = "extends HBoxContainer
+
+@onready var toggle_me_text: Label = %ToggleMeText
+
+func _on_start_fight_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/fight_scene.tscn\")
+"
+
+[node name="Start Menu" type="Control" unique_id=384888309]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=208161117]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -403.0
+offset_top = -226.5
+offset_right = 403.0
+offset_bottom = 226.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="MenuButton" type="HBoxContainer" parent="VBoxContainer" unique_id=1368234283]
+layout_mode = 2
+size_flags_vertical = 6
+script = SubResource("GDScript_0u6gb")
+
+[node name="StartGame" type="Button" parent="VBoxContainer/MenuButton" unique_id=87384295]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Main Game"
+
+[node name="StartGameLable" type="Label" parent="VBoxContainer/MenuButton" unique_id=178506468]
+layout_mode = 2
+text = "Start the main game"
+
+[node name="FightButton" type="HBoxContainer" parent="VBoxContainer" unique_id=889400508]
+layout_mode = 2
+size_flags_vertical = 6
+script = SubResource("GDScript_j46f7")
+
+[node name="StartFight" type="Button" parent="VBoxContainer/FightButton" unique_id=1497646192]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Fight Scene"
+
+[node name="StartFightLable" type="Label" parent="VBoxContainer/FightButton" unique_id=1790655550]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start a test fight scene"
+
+[node name="Label" type="Label" parent="." unique_id=206670368]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "THIS IS A TEMPORARY START MENU FOR DEBUGGING PUPOSES"
+
+[connection signal="pressed" from="VBoxContainer/MenuButton/StartGame" to="VBoxContainer/MenuButton" method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/FightButton/StartFight" to="VBoxContainer/FightButton" method="_on_start_fight_pressed"]

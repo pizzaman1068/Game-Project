@@ -1,13 +1,355 @@
-[gd_scene format=3 uid="uid://bnat7omj6ixpc"]
+[gd_scene format=3 uid="uid://dswgmb0xwhara"]
 
-[node name="fight_scene" type="Control" unique_id=424616997]
+[ext_resource type="Texture2D" uid="uid://bvlvfl27a0b1o" path="res://Art Assets/Player_Character/Player_Character_Default.png" id="1_l3x7y"]
+
+[sub_resource type="GDScript" id="GDScript_l3x7y"]
+script/source = "extends Control
+
+#Flavour Text
+@onready var flavour_text: RichTextLabel = %FlavourText
+
+#Different Character Sprites
+@onready var character_1: AnimatedSprite2D = %Character1
+@onready var character_2: AnimatedSprite2D = %Character2
+@onready var character_3: AnimatedSprite2D = %Character3
+@onready var enemy: AnimatedSprite2D = %Enemy
+
+#Char 1 items
+@onready var char_1: TextureRect = %Char1
+@onready var char_1_health_bar: ProgressBar = %Char1Health
+
+#Char 2 items
+@onready var char_2: TextureRect = %Char2
+@onready var char_2_health_bar: ProgressBar = %Char2Health
+
+#Char 3 items
+@onready var char_3: TextureRect = %Char3
+@onready var char_3_health_bar: ProgressBar = %Char3Health
+
+#Implement Game Logic, including enemy attacks, player attack choices, items, defending and skill check
+#Needs:
+#Enemy Attacking
+#Player Choices
+#Healing
+#Skill Check
+#Damage Count
+#Death Screen
+#Flavour Text Display
+#Animations
+#Prob more lol (⓿_⓿) (I'm starting to regret my life choices, where do I even start...)
+
+#Character health
+var char1Health : int = 10;
+var char2Health : int = 10;
+var char3Health : int = 10;
+
+#Enemy health
+var enemyHealth : int = 10;
+
+#Iterates through turns till someone wins
+func main() -> void:
+	while true:
+		player_turn()
+		enemy_turn()
+
+#Runs the player and enemys turn, also checks for win status
+func player_turn() -> void:
+	#Character 1
+	
+	#Character 2
+	
+	#Character 3
+	
+	
+	pass
+
+func enemy_turn() -> void:
+	#The more I write the harder it seems. ts scares me so bad
+	pass
+
+#Checks for a win then calls the appopriate win func if so
+func check_enemy_win() -> void:
+	if char1Health <= 0 and char2Health <= 0 and char3Health <= 0:
+		enemy_win()
+
+func check_player_win() -> void:
+	if enemyHealth <= 0:
+		player_win()
+
+#Runs code accordingly to who wins
+func player_win() -> void:
+	pass
+
+func enemy_win() -> void:
+	pass
+
+#Hey, You their, Yea you, Come closer, even closer, perfect, now listen, ..., I have NO FUCKING CLUE WHAT IM DOING （；´д｀）ゞ
+"
+
+[sub_resource type="Gradient" id="Gradient_gq4w8"]
+offsets = PackedFloat32Array(0.109195404, 1)
+colors = PackedColorArray(0.75686276, 0.101960786, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q846t"]
+gradient = SubResource("Gradient_gq4w8")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78axv"]
+atlas = ExtResource("1_l3x7y")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8qi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78axv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3x7y"]
+atlas = ExtResource("1_l3x7y")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q846t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3x7y")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_11mp3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aakdx"]
+gradient = SubResource("Gradient_11mp3")
+width = 128
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_1a0q2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0wi4r"]
+gradient = SubResource("Gradient_1a0q2")
+width = 128
+height = 128
+
+[sub_resource type="Gradient" id="Gradient_j70gj"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rc36j"]
+gradient = SubResource("Gradient_j70gj")
+width = 128
+height = 128
+
+[node name="fight_scene" type="Control" unique_id=1974853136]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -392.0
-offset_top = -248.0
-offset_right = -584.0
-offset_bottom = -328.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_l3x7y")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1992721525]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_q846t")
+
+[node name="FlavourText" type="RichTextLabel" parent="." unique_id=1378217878]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -262.5
+offset_top = -210.0
+offset_right = 262.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 22
+text = "Wow, so much to see...
+If only someone would make this functional
+(⊙ˍ⊙)"
+
+[node name="ColorRect" type="ColorRect" parent="FlavourText" unique_id=987414999]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 1, 1)
+
+[node name="Fighting" type="HBoxContainer" parent="." unique_id=286342028]
+custom_minimum_size = Vector2(1000, 225)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -125.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Character1" type="AnimatedSprite2D" parent="Fighting" unique_id=242019124]
+unique_name_in_owner = true
+position = Vector2(210.2, 129.9)
+scale = Vector2(1.1, 1.1)
+sprite_frames = SubResource("SpriteFrames_y8qi5")
+
+[node name="Character2" type="AnimatedSprite2D" parent="Fighting" unique_id=1278531630]
+unique_name_in_owner = true
+position = Vector2(335.2, 129.9)
+scale = Vector2(1.1, 1.1)
+sprite_frames = SubResource("SpriteFrames_y8qi5")
+
+[node name="Character3" type="AnimatedSprite2D" parent="Fighting" unique_id=206305192]
+unique_name_in_owner = true
+position = Vector2(460.2, 129.9)
+scale = Vector2(1.1, 1.1)
+sprite_frames = SubResource("SpriteFrames_y8qi5")
+
+[node name="Enemy" type="AnimatedSprite2D" parent="Fighting" unique_id=500397742]
+unique_name_in_owner = true
+position = Vector2(775, 129.9)
+scale = Vector2(1.1, 1.1)
+sprite_frames = SubResource("SpriteFrames_q846t")
+
+[node name="TopPanel" type="Panel" parent="." unique_id=1215764430]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 200.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopPanel" unique_id=1633598207]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -553.5
+offset_top = -64.0
+offset_right = 553.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 54
+alignment = 1
+
+[node name="Char1" type="TextureRect" parent="TopPanel/HBoxContainer" unique_id=1309620808]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_aakdx")
+
+[node name="Char1Info" type="VSplitContainer" parent="TopPanel/HBoxContainer" unique_id=2129598492]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Char1label" type="Label" parent="TopPanel/HBoxContainer/Char1Info" unique_id=411934945]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "character 1"
+
+[node name="Char1Health" type="ProgressBar" parent="TopPanel/HBoxContainer/Char1Info" unique_id=691623753]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+max_value = 10.0
+value = 10.0
+
+[node name="Char2" type="TextureRect" parent="TopPanel/HBoxContainer" unique_id=1649651003]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_0wi4r")
+
+[node name="Char2Info" type="VSplitContainer" parent="TopPanel/HBoxContainer" unique_id=629959055]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Char2label" type="Label" parent="TopPanel/HBoxContainer/Char2Info" unique_id=69741401]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Character 2"
+
+[node name="Char2Health" type="ProgressBar" parent="TopPanel/HBoxContainer/Char2Info" unique_id=1937693237]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+max_value = 10.0
+value = 10.0
+
+[node name="Char3" type="TextureRect" parent="TopPanel/HBoxContainer" unique_id=1616477820]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_rc36j")
+
+[node name="Char3Info" type="VSplitContainer" parent="TopPanel/HBoxContainer" unique_id=989029335]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Char3label" type="Label" parent="TopPanel/HBoxContainer/Char3Info" unique_id=33242774]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Character 3"
+
+[node name="Char3Health" type="ProgressBar" parent="TopPanel/HBoxContainer/Char3Info" unique_id=1531821506]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+max_value = 10.0
+value = 10.0
+
+[node name="SPBar" type="HBoxContainer" parent="." unique_id=1297727993]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = -280.0
+offset_right = 188.0
+offset_bottom = -80.0
+grow_vertical = 0
+alignment = 2
+
+[node name="Label" type="Label" parent="SPBar" unique_id=958548306]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 35
+text = "SP"
+
+[node name="SPFillBar" type="ProgressBar" parent="SPBar" unique_id=331646798]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+value = 100.0
+fill_mode = 3
